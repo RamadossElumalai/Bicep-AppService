@@ -2,7 +2,7 @@ param location string = resourceGroup().location
 
 //windows system
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: 'azbicep-dev-eus-asp1'
+  name: '' //Name
   location: location
   sku: {
     name: 'S1' //Pricing tier
@@ -11,7 +11,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 }
 
 resource appService 'Microsoft.Web/sites@2021-03-01' = {
-  name: 'azbicep-dev-eus-web-app1'
+  name: '' //Name
   location: location
   properties:{
     //Important we should give your app service plan name
