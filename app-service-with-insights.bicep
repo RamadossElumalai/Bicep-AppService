@@ -2,7 +2,7 @@ param location string = resourceGroup().location
 
 // creating app service plan
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
-  name: 'azbicep-dev-eus-asp1'
+  name: ''  //Name 
   location: location
   sku: {
     name: 'S1' //Pricing tier
@@ -12,11 +12,11 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 
 // creating app service
 resource appService 'Microsoft.Web/sites@2021-03-01' = {
-  name: 'azbicep-dev-eus-web-app1'
+  name: '' //name
   location: location
   properties:{
     //Important we should give your app service plan name
-    serverFarmId: resourceId('Microsoft.Web/serverfarms', 'azbicep-dev-eus-asp1')
+    serverFarmId: resourceId('Microsoft.Web/serverfarms', '')
   }
   dependsOn:[
     //if your creating your app service plan with this file 
@@ -39,17 +39,13 @@ resource appServiceAppSettings 'Microsoft.Web/sites/config@2021-03-01' = {
         name: 'APPINSIGHTS_INSTRUMENTATION_KEY'
         value: appInsights.properties.InstrumentationKey
       }
-      {
-        name: 'key2'
-        value: 'test2'
-      }
     ]
   }
 }
 
 //creating application insights with out linking it
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: 'azbicep-dev-eus-web-app1-ai'
+  name: '' //name
   location: location
   kind: 'web'
   properties:{
